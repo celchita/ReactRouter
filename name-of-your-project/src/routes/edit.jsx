@@ -7,6 +7,8 @@ import {
 
   export async function action({ request, params }) {
     const formData = await request.formData();
+    const firstName = formData.get("first");
+    const lastName = formData.get("last");
     const updates = Object.fromEntries(formData);
     await updateContact(params.contactId, updates);
     return redirect(`/contacts/${params.contactId}`);
@@ -30,7 +32,7 @@ export default function EditContact() {
           placeholder="Last"
           aria-label="Last name"
           type="text"
-          name="last"
+          name="first"
           defaultValue={contact.last}
         />
       </p>
